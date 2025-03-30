@@ -35,12 +35,19 @@ results = cursor.fetchall()
 cursor.close()
 conn.close()
 
-# Processa the results
+# Process the results
 genders = []
 amount_per_gender = []
 
+#row[0] returns the gender in the portuguese language. In that case we need to translate them so the labels aren't displayed in portuguese)
+
+gender_translation = {
+    'Masculino': 'Male',
+    'Feminino' : 'Female',
+    'Outro' : 'Other'
+}
 for row in results:
-    genders.append(row[0])
+    genders.append(gender_translation[row[0]])
     amount_per_gender.append(row[1])
 
 # Criando the pie chart
